@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+
 import moment from 'moment';
 import HourlyWeatherDataCard from './HourlyWeatherDataCard';
 
@@ -22,7 +22,7 @@ const CurrentWeatherData = ({ data }) => {
             <p>Sunset: {new Date(data.current.sunset * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>
             <hr/>
             <div>
-
+                <h2>Details</h2>
                 <p>{data.hourly.map((hourly, i) => {
                     return i !== 0 && 
                     <div className=''>

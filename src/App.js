@@ -26,7 +26,7 @@ function App() {
             }   
     
         // FETCH LOCATION POSTITION BASED ON LAT AND LONG    
-        fetch(`${REACT_APP_API_URL}/onecall?lat=${latitude}&lon=${longitude}&units=imperial&appid=${REACT_APP_API_KEY}`)
+        fetch(`${REACT_APP_API_URL}/onecall?lat=${latitude}&lon=${longitude}&units=metric&appid=${REACT_APP_API_KEY}`)
           .then(res => res.json())
           .then(result => {
           // .then({hourly}) => { då får jag bara ut hourly data
@@ -69,14 +69,16 @@ function App() {
     <div className="App">
       {/* <button onClick={handleClick}>Current Location</button> */}
       <div>
+        <h2>Today</h2>
         <CurrentWeatherData data={weatherData} />
+        </div>
+        <div>
+            <h2>Weakly Weather Report</h2>
             {weatherData.daily && weatherData.daily.map((forecastData, i) => {
               return i != 0 && <ForecastData forecastData={forecastData}/>
-            }) 
-           
-        }
-      </div>
-
+              })    
+            }
+        </div>
     </div>
   );
 }
