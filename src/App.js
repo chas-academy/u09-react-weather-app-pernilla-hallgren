@@ -3,22 +3,31 @@ import React, { useEffect, useState } from "react";
 import moment from 'moment';
 import CurrentWeatherData from './components/CurrentWeatherData';
 import ForecastData from './components/ForecastData';
+import DegreeToggle from './components/DegreeToggle';
+import Header from './components/Header';
+import Footer from './components/Footer';
 
 function App() {
 
   const [weatherData, setWeatherData] = useState({});
-  const [city, setCity] = useState([])
-  const [hourlyWeatherData, setHourlyWeatherData] = useState({});
-  const [loading, setLoading] = useState('false')
-  // const [currentWeatherData, setCurrentWeatherData] = useState({});
-  // const [dailyWeatherData, setDailyWeatherData] = useState({});
+  // const [city, setCity] = useState([])
+  const [approved, setApproved] = useState(false)
+  const [tempUnit, setTempUnit] = useState('F')
+  // const [loading, setLoading] = useState('false')
+  
+  const handleSetTempUnit = (e) => {
+    const unit = e.target.dataset.unit
+    setTempUnit(unit)
+  }
 
   // GEOLOCATION 
   useEffect(() => {
+      
+      if(approved === false) return
       navigator.geolocation.getCurrentPosition(position => {
-
+        
         const { latitude, longitude } = position.coords // destructuring
-        const { REACT_APP_API_URL, REACT_APP_API_KEY, REACT_APP_API_GEO_REVERSE_URL } = process.env // destructuring 
+        const { REACT_APP_API_URL, REACT_APP_API_KEY } = process.env // destructuring 
 
         const removeUndefinedAndNull = value => value
         const extractEveryThirdHour = (value, index) => {
@@ -26,7 +35,7 @@ function App() {
             }   
     
         // FETCH LOCATION POSTITION BASED ON LAT AND LONG    
-        fetch(`${REACT_APP_API_URL}/onecall?lat=${latitude}&lon=${longitude}&units=metric&appid=${REACT_APP_API_KEY}`)
+        fetch(`${REACT_APP_API_URL}/onecall?lat=${latitude}&lon=${longitude}&units=imperial&appid=${REACT_APP_API_KEY}`)
           .then(res => res.json())
           .then(result => {
           // .then({hourly}) => { då får jag bara ut hourly data
@@ -45,12 +54,16 @@ function App() {
               .filter(extractEveryThirdHour) // tar ut var 3:e timme i value arryen
 
             setWeatherData(result)
-            // console.log(result);
+            console.log(result);
           });
-        });     
-  }, [])
+        }); 
+  }, [approved])
 
-  // console.log(weatherData.lat)
+  useEffect(() => {
+      navigator.permissions.query({
+        name: 'geolocation'
+      }).then(({state}) => setApproved(state === 'granted'))
+  }, [])
 
   // useEffect(() => {
     
@@ -58,27 +71,32 @@ function App() {
   //     fetch(`${process.env.REACT_APP_API_GEO_REVERSE_URL}reverse?lat=${weatherData.lat}&lon=${weatherData.lon}&appid=${process.env.REACT_APP_API_KEY}`)
   //       .then(res => res.json())
   //       .then(result => {
-          
   //         setCity(result.name);
-          
   //       }) 
-  // }, [weatherData])
+  // }, [])
   
   return  (
-    
     <div className="App">
-      {/* <button onClick={handleClick}>Current Location</button> */}
-      <div>
-        <h2>Today</h2>
-        <CurrentWeatherData data={weatherData} />
-        </div>
+      <main>
+        <Header />
         <div>
-            <h2>Weakly Weather Report</h2>
-            {weatherData.daily && weatherData.daily.map((forecastData, i) => {
-              return i != 0 && <ForecastData forecastData={forecastData}/>
-              })    
-            }
-        </div>
+          <h2>Today</h2>
+          <DegreeToggle data={weatherData} handleChangeTempUnit={handleSetTempUnit} tempUnit={tempUnit}/>
+          <CurrentWeatherData data={weatherData} tempUnit={tempUnit}/>
+          </div>
+          <div>
+              <h2>Weakly Weather Report</h2>
+                <div>
+                    {weatherData.daily && weatherData.daily.map((forecastData, i) => {
+                      return i !== 0 && 
+                      <ForecastData forecastData={forecastData} tempUnit={tempUnit}/> 
+                      }) 
+                    } 
+                </div>
+
+          </div>
+          <Footer />
+        </main>
     </div>
   );
 }
