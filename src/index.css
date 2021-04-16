@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -9,14 +11,19 @@ body {
   font-weight: 300;
   color: rgb(122, 121, 121);
   text-shadow: 2px 2px 3px rgba(109, 109, 109, 0.164);
-}
-
-main {
-  /* height: 100vh;
-  background-image: url('assets/bg-image.svg');
+  background-image: url('assets/1565.jpg');
+  background-attachment: fixed;
   background-size: cover;
-  background-repeat: no-repeat; */
+  background-position: center center;
+  background-repeat: no-repeat;
 }
+/* 
+.container-main {
+
+    background-repeat: repeat no-repeat;
+    background-repeat: repeat-y;
+    width: auto;
+} */
 
 .search-box {
   width: 80%;
@@ -37,4 +44,8 @@ main {
   color: #000000;
   /* font-size: 18px; */
   
+}
+
+.houly-cards {
+  display: inline-block;
 }

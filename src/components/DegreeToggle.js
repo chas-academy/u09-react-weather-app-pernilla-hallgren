@@ -1,6 +1,6 @@
 
 const DegreeToggle = ({ data, handleChangeTempUnit, tempUnit }) => {
-    console.log(tempUnit)
+    // console.log(tempUnit)
     // const condition = data.current
     // const time = new Date(data.dt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
     // const allDates = new Date(data.dt).toLocaleDateString()
@@ -16,7 +16,7 @@ const DegreeToggle = ({ data, handleChangeTempUnit, tempUnit }) => {
             </label> &nbsp;
 
             <label>°C &nbsp;
-                <input type="radio" value="c" data-unit="C" checked={tempUnit === 'C'} onClick={handleChangeTempUnit}></input>
+                <input type="radio" value="c" data-unit="C" checked={tempUnit === 'C'} onClick={handleChangeTempUnit} ></input>
             </label>
 
             {/* <p>Conditions: {data.weather[0].main} - {data.weather[0].description}</p>
