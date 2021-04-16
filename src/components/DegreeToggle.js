@@ -10,7 +10,7 @@ const DegreeToggle = ({ data, handleChangeTempUnit, tempUnit }) => {
     // const switchToF = () => setOption('fahrenheit')
 
     return (
-        <div>
+        <div style={{ fontSize: '18px' }}>
             <label>°F &nbsp;
                 <input type="radio" value="f" data-unit="F" checked={tempUnit === 'F'} onClick={handleChangeTempUnit}></input>
             </label> &nbsp;

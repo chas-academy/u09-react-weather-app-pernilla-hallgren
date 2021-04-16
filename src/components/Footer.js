@@ -1,14 +1,11 @@
 const Footer = () => {
 
     return (
+        
         <div>
+            <hr/>
             <p>© 2021 Copyright Pernilla Hällgren</p>
-            <a href="">Github</a>
-            <a href="">LinkedIn</a>
         </div>
-
-
-
     )
 }
 

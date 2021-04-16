@@ -8,7 +8,7 @@ const ForecastData = ({ forecastData, tempUnit }) => {
     return (
         <div>
             <Col className="justify-content-center" >  
-                <Card style={{ color: 'white', margin: '10px', padding: '20px', justifyContent: 'center', borderRadius: '20px', backgroundColor: '#104F8A', background: 'rgba(16, 79, 138, 0.4)', boxShadow: '5px 5px 5px #04111D' }}>
+                <Card style={{ margin: '10px', padding: '20px', justifyContent: 'center', borderRadius: '20px', backgroundColor: '#104F8A', background: 'rgba(16, 79, 138, 0.4)', boxShadow: '5px 5px 5px #04111D' }}>
                     <Card.Title>
                         <h4>{moment.unix(forecastData.dt).format('dddd')}</h4>
                     </Card.Title>

@@ -9,7 +9,7 @@
 body {
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
-  color: rgb(122, 121, 121);
+  color: rgb(255, 255, 255);
   text-shadow: 2px 2px 3px rgba(109, 109, 109, 0.164);
   background-image: url('assets/1565.jpg');
   background-attachment: fixed;
@@ -17,13 +17,10 @@ body {
   background-position: center center;
   background-repeat: no-repeat;
 }
-/* 
-.container-main {
 
-    background-repeat: repeat no-repeat;
-    background-repeat: repeat-y;
-    width: auto;
-} */
+.container-main {
+  color: white;
+}
 
 .search-box {
   width: 80%;

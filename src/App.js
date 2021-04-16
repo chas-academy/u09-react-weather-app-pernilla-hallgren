@@ -79,20 +79,16 @@ function App() {
   return  (
     <div className="container-main text-center">
       <main>
+          <Header />
+          <hr />
+            <h2>{city}</h2>
+            <DegreeToggle data={weatherData} handleChangeTempUnit={handleSetTempUnit} tempUnit={tempUnit} />
+            <Container className="fluid">
+              <Row className="text-center justify-content-center">
+                <CurrentWeatherData data={weatherData} tempUnit={tempUnit} key={weatherData.dt} />
+              </Row>
+            </Container>
         
-        
-          {/* <Header /> */}
-          <h2>{city}</h2>
-          <h4>Today</h4>
-          <DegreeToggle data={weatherData} handleChangeTempUnit={handleSetTempUnit} tempUnit={tempUnit} />
-          <Container className="fluid">
-            <Row className="text-center justify-content-center">
-              <CurrentWeatherData data={weatherData} tempUnit={tempUnit} key={weatherData.dt} />
-            </Row>
-          </Container>
-          
-
-          
             <h2>Weakly Weather Report</h2>
             <Container className="fluid">
               <Row className="text-center justify-content-center"> 
@@ -103,7 +99,6 @@ function App() {
                   } 
               </Row>
             </Container> 
-          
           <Footer />
         </main>
     </div>

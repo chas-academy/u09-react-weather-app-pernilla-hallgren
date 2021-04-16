@@ -10,7 +10,7 @@ const CurrentWeatherData = ({ data, tempUnit }) => {
     return data.current ? 
         <div>
             <Container>
-                <Card style={{ fontWeight: 'bold', color: 'white', width: '18rem', justifyContent: 'center', margin: '20px auto', border: 'none', background: 'none' }}>
+                <Card style={{ fontWeight: 'bold', width: '18rem', justifyContent: 'center', margin: '20px auto', border: 'none', background: 'none' }}>
                     <Card.Img className="fluid" src={process.env.REACT_APP_ICON_URL + data.current.weather[0].icon + "@2x.png"} alt="weather-image" />
                     <Card.Body>
                         <p>
@@ -34,7 +34,7 @@ const CurrentWeatherData = ({ data, tempUnit }) => {
                 <Container className="fluid">
                     <Row className="text-center justify-content-center"> 
                         <Col className="justify-content-center"> 
-                            <Card border="secondary" style={{ color: 'white', margin: '25px', padding: '20px', justifyContent: 'center', backgroundColor: '#104F8A', background: 'rgba(16, 79, 138, 0.4)', boxShadow: '5px 5px 5px #04111D', borderRadius: '20px', border: 'none' }}>
+                            <Card border="secondary" style={{ margin: '25px', padding: '20px', justifyContent: 'center', backgroundColor: '#104F8A', background: 'rgba(16, 79, 138, 0.4)', boxShadow: '5px 5px 5px #04111D', borderRadius: '20px', border: 'none' }}>
                                 <p>{data.hourly.map((hourly, i) => {
                                     return i !== 0 && 
                                     <div className="houly-cards">
