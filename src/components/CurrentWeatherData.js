@@ -1,12 +1,10 @@
-
-import moment from 'moment';
 import { getTempFromUnit } from '../utils';
 import HourlyWeatherDataCard from './HourlyWeatherDataCard';
 import { Card, Col, Container, Row } from 'react-bootstrap';
 import { Droplet, Sunrise, Sunset, ThermometerHalf, Wind } from 'react-bootstrap-icons';
 
 const CurrentWeatherData = ({ data, tempUnit }) => {
-    // console.log(data);
+
     return data.current ? 
         <div>
             <Container>
@@ -19,8 +17,6 @@ const CurrentWeatherData = ({ data, tempUnit }) => {
                         </p>
 
                         <h3>{data.current.weather[0].main} - {data.current.weather[0].description}</h3>
-                        {/* <h5>{moment().format('dddd LL')}</h5>        */}
-                        {/* <p>Time: {new Date(data.current.dt * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p> */}
                         <p><ThermometerHalf /> {getTempFromUnit(tempUnit, data.current.temp)}</p>
                         <p>Feels like: {getTempFromUnit(tempUnit, data.current.feels_like)}</p>
                         <p><Droplet /> {data.current.humidity} %</p>
@@ -46,8 +42,6 @@ const CurrentWeatherData = ({ data, tempUnit }) => {
                     </Row>
                 </Container>
             </div>
-                      
-            
         </div>
     : null
 }

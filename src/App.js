@@ -15,14 +15,12 @@ function App() {
   const [city, setCity] = useState([])
   const [approved, setApproved] = useState(false)
   const [tempUnit, setTempUnit] = useState('F')
-  // const [loading, setLoading] = useState('false')
 
   const handleSetTempUnit = (e) => {
     const unit = e.target.dataset.unit
     setTempUnit(unit)
   }
 
-  // GEOLOCATION 
   useEffect(() => {
       
       if(approved === false) return
@@ -35,25 +33,18 @@ function App() {
         const extractEveryThirdHour = (value, index) => {
               return index % 3 === 0; 
             }   
-    
         // FETCH LOCATION POSTITION BASED ON LAT AND LONG    
         fetch(`${REACT_APP_API_URL}/onecall?lat=${latitude}&lon=${longitude}&units=imperial&appid=${REACT_APP_API_KEY}`)
           .then(res => res.json())
           .then(result => {
-          // .then({hourly}) => { då får jag bara ut hourly data
-
-            // value är all data varje index postion håller i objektet
-            // result.hourly döper vi den nya arrayen till som map returnerar
-            result.hourly = result.hourly.map(value => {   // dot notation detta samt det ovan är två sätt att skriva det på 
-              value.date = moment.unix(value.dt).format("YYYY-MM-DD HH:mm:ss"); // jag skapar ett nytt property object som heter value.date som vi sätter till dagens datum
-              if(moment(value.date).isSame(moment(), 'day')) { // returnerar en boolean 
-                return value // returnerar en array med samma längd många undefiend
+            result.hourly = result.hourly.map(value => {   
+              value.date = moment.unix(value.dt).format("YYYY-MM-DD HH:mm:ss"); 
+              if(moment(value.date).isSame(moment(), 'day')) {  
+                return value 
               } 
-            // filter returnerar ett värde där det totala uttrycket (boolean) är sant 
-            // tex om index är 9 då får 3 plats tre gånger där och det blir == 0 över 
-            // vilket är sant och den tas med i den nya arrayen
-            }).filter(removeUndefinedAndNull)  // tar bort dom värderna som är undefiend 
-              .filter(extractEveryThirdHour) // tar ut var 3:e timme i value arryen
+
+            }).filter(removeUndefinedAndNull)  
+              .filter(extractEveryThirdHour) 
 
             setWeatherData(result)
             console.log(result);
@@ -62,7 +53,6 @@ function App() {
         fetch(`${REACT_APP_API_GEO_REVERSE_URL}reverse?lat=${latitude}&lon=${longitude}&appid=${REACT_APP_API_KEY}`)
           .then(res => res.json())
           .then(result => {
-            console.log(result[0].name)
             setCity(result[0].name); 
           })
         }); 
@@ -73,8 +63,6 @@ function App() {
         name: 'geolocation'
       }).then(({state}) => setApproved(state === 'granted'))
   }, [])
-  
-  console.log(weatherData)
 
   return  (
     <div className="container-main text-center">
@@ -88,8 +76,7 @@ function App() {
                 <CurrentWeatherData data={weatherData} tempUnit={tempUnit} key={weatherData.dt} />
               </Row>
             </Container>
-        
-            <h2>Weakly Weather Report</h2>
+            <h2 style={{ margin: '10px' }}>Weakly Weather Report</h2>
             <Container className="fluid">
               <Row className="text-center justify-content-center"> 
                   {weatherData.daily && weatherData.daily.map((forecastData, i) => {

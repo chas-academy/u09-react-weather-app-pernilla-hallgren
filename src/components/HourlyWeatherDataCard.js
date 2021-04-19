@@ -1,6 +1,6 @@
 import moment from 'moment';
 import { Card } from 'react-bootstrap';
-import { Droplet, Sunrise, Sunset, ThermometerHalf, Wind} from 'react-bootstrap-icons';
+import { Droplet, ThermometerHalf, Wind} from 'react-bootstrap-icons';
 import { getTempFromUnit } from '../utils';
 
 
@@ -15,7 +15,7 @@ const HourlyWeatherDataCard = ({ hourly, tempUnit }) => {
                 <p><ThermometerHalf /> {getTempFromUnit(tempUnit, hourly.temp)}</p>
                 <p>Feels like: {getTempFromUnit(tempUnit, hourly.feels_like)}</p>
                 <p><Droplet /> {hourly.humidity} %</p>
-                <p><Wind /> {Math.round(hourly.wind_speed)} m/s</p>
+                <p><Wind /> {Math.round(hourly.wind_speed)} m/h</p>
             </Card.Body>
         </div>
     : null

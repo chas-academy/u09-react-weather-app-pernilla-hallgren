@@ -20,12 +20,10 @@ const ForecastData = ({ forecastData, tempUnit }) => {
                             <span style={{ marginLeft: '8px' }}><Sunset style={{ marginBottom: '2px', marginRight: '2px' }}/> {new Date(forecastData.sunset * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
                         </p>
                         <p><ThermometerHigh />{getTempFromUnit(tempUnit, forecastData.temp.day)}</p>
-                        
                         <p><ThermometerLow />{getTempFromUnit(tempUnit, forecastData.temp.min)}</p>
                     </Card.Body>
                 </Card>
-            </Col>
-                        
+            </Col>       
         </div>
     )
 }
