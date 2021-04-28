@@ -1,6 +1,6 @@
 import moment from 'moment';
 import { Card } from 'react-bootstrap';
-import { Droplet, ThermometerHalf, Wind} from 'react-bootstrap-icons';
+import { Droplet, ThermometerHalf, Wind } from 'react-bootstrap-icons';
 import { getTempFromUnit } from '../utils';
 
 

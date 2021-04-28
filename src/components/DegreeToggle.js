@@ -1,4 +1,4 @@
-
+// DEGREE TOGGLE TO CHANGE FROM F TO C
 const DegreeToggle = ({ handleChangeTempUnit, tempUnit }) => {
 
     return (
