@@ -52,7 +52,7 @@ Kunna få en väderleksprognos för väderförhållanden (enligt ovan) 5 dagar f
 * Var tredje timme för nuvarande dygn
 * 5-dagarsprognos
 
-Nyttja ett väder-API, t.ex. SMHI, YR.NO, OpenWeatherMaps
+Nyttja ett väder-API, i denna appliktion nyttjar vi OpenWeatherMaps API.
 Nyttja positionering via geolocation i webbläsaren
 Design/färg & form baserad på weather.com (Länkar till en externa sida.)Länkar till en externa sida. eller liknande applikationer/appar
 
